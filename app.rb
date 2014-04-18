@@ -59,47 +59,9 @@ require "sinatra/reloader"
       status 404
     end
 
-
-    # Redirect any URLs without a trailing slash to the version with.
-    # get %r{(/.*[^\/])$} do
-    #   redirect "#{params[:captures].first}/"
-    # end
-
-
     get '/' do
-      # binding.pry
       haml :index, :layout => :'layouts/application'
     end
-
-    # Routes for pages that have unique things...
-
-    # Catch-all for /something/else/etc/ pages which just display templates.
-    # get %r{/([\w\/-]+)/$} do |path|
-    #   pages = {
-    #     'help' => {
-    #       :page_name => 'help',
-    #       :title => 'Help',
-    #     },
-    #     'help/accounts' => {
-    #       :page_name => 'help_accounts',
-    #       :title => 'Accounts Help',
-    #     },
-    #     # etc
-    #   }
-    #   if pages.has_key?(path)
-    #     @page_name = pages[path][:page_name]
-    #     @page_title = pages[path][:title]
-    #     layout = :with_sidebar
-    #     if pages[path].has_key?(:layout)
-    #       layout = pages[path][:layout].to_sym
-    #     end
-    #     erb @page_name.to_sym,
-    #       :layout => layout,
-    #       :layout_options => {:views => settings.layouts_dir}
-    #   else
-    #     show_404
-    #   end
-    # end
 
   end
 
