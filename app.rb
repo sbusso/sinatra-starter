@@ -1,19 +1,15 @@
 require 'bundler'
 Bundler.require
-require "sinatra/base"
-require "sinatra/reloader"
+require 'sinatra/base'
+require 'sinatra/sprockets-helpers'
 
   class App < Sinatra::Base
-
-    configure :development do
-      register Sinatra::Reloader
-    end
+    register Sinatra::Sprockets::Helpers
 
     set :sprockets, Sprockets::Environment.new(root)
     set :assets_prefix, '/assets'
     set :digest_assets, false
-    set :assets_precompile,    [ /\w+\.(?!js|css).+/, /application.(css|js)$/ ]
-    # set :public_folder, 'public'
+    # set :assets_precompile,    [ /\w+\.(?!js|css).+/, /application.(css|js)$/ ]
 
     configure do
       # Set your Google Analytics ID here if you have one:
@@ -28,18 +24,11 @@ require "sinatra/reloader"
       end
 
       # Configure Sprockets::Helpers (if necessary)
-      Sprockets::Helpers.configure do |config|
-        config.environment = sprockets
-        config.prefix      = assets_prefix
-        config.digest      = digest_assets
-        config.public_path = public_folder
-
-      end
-
+      configure_sprockets_helpers
       # sprockets.css_compressor = :scss
       # sprockets.js_compressor  = :uglify
 
-      # Sprockets::Sass.add_sass_functions = false
+      # Sprockets::Sass.add_sass_funqctions = false
 
       # config.debug       = true if development?
 

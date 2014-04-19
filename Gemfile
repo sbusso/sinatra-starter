@@ -1,9 +1,5 @@
 source "http://rubygems.org"
 
-gem 'shotgun', :group=>:development
-
-gem 'uglifier'
-
 gem 'rake'
 
 gem 'thin'
@@ -15,15 +11,22 @@ gem "sinatra-contrib"
 
 gem 'haml'
 gem 'sass'
-
+gem 'coffee-script'
 
 gem 'sprockets'
 gem 'sprockets-helpers'
+# gem 'sinatra-asset-pipeline'
 gem 'sprockets-sass'
+gem 'uglifier'
 
 gem 'bootstrap-sass'
-gem 'coffee-script'
 
 
-gem 'guard'
-gem 'guard-sass', :require => false
+group :development do
+  gem 'guard'
+  gem 'guard-sass', :require => false
+  gem 'shotgun'
+  # gem 'guard-sprockets'
+  gem 'guard-livereload'
+  gem 'capistrano'
+end
